@@ -1,0 +1,141 @@
+@use "sass:map";
+@use "../base/helpers" as *;
+
+@each $header in (1, 2, 3, 4, 5, 6) {
+  h#{$header} {
+    width: 100%;
+    font-family: "Signika Negative", sans-serif;
+
+    font-size: map.get($brandingHeadingFontSizes, "h#{$header}-xs");
+
+    @include atSmall {
+      font-size: map.get($brandingHeadingFontSizes, "h#{$header}-sm");
+    }
+
+    @include atMedium {
+      font-size: map.get($brandingHeadingFontSizes, "h#{$header}-md");
+    }
+
+    @include atLarge {
+      font-size: map.get($brandingHeadingFontSizes, "h#{$header}-lg");
+    }
+  }
+}
+
+%blogdetailheading {
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
+
+.blog-detail-page {
+  h1 {
+    @extend %blogdetailheading;
+    font-size: 28px;
+  }
+
+  h2 {
+    @extend %blogdetailheading;
+    font-size: 24px;
+  }
+
+  h3 {
+    @extend %blogdetailheading;
+    font-size: 20px;
+  }
+
+  h4 {
+    @extend %blogdetailheading;
+    font-size: 18px;
+  }
+
+  h5 {
+    @extend %blogdetailheading;
+    font-size: 16px;
+  }
+
+  h6 {
+    @extend %blogdetailheading;
+    font-size: 16px;
+  }
+}
+
+.blog-detail-page {
+  ol {
+    list-style-type: none; /* Remove default list numbers */
+    counter-reset: list-counter; /* Reset custom counter */
+    margin: 20px 0;
+    padding-left: 0;
+  }
+
+  ol li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    border-left: 2px solid #e2ecf6;
+  }
+
+  ol li::before {
+    content: counter(list-counter);
+    counter-increment: list-counter;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(-50%);
+    background-color: #0392dd; /* Replace with theme color if needed */
+    color: white;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li {
+    position: relative;
+    margin: 15px 0;
+    padding: 5px 25px; /* Added padding to create space inside the rectangle */
+    // background-color: #e2ecf6; /* theme-three for background */
+  }
+
+  /* Adding a colored "dot" for each list item with a margin */
+  ul li::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    // transform: translateY(-100%);
+    margin-right: 15px; /* Margin between dot and text */
+    width: 12px;
+    height: 12px;
+    background-color: #16c5fe; /* theme-one */
+    border-radius: 50%;
+  }
+
+  /* Alternating dot colors for a visually appealing look */
+  ul li:nth-child(2n)::before {
+    background-color: #0392dd; /* theme-two */
+  }
+
+  ul li:nth-child(3n)::before {
+    background-color: #ffc431; /* theme-five */
+  }
+
+  ul li:nth-child(4n)::before {
+    background-color: #156393; /* theme-four */
+  }
+
+  ul li:nth-child(5n)::before {
+    background-color: #dbac37; /* theme-six */
+  }
+}
