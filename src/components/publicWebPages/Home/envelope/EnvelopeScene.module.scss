@@ -1,0 +1,88 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hintPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
+}
+
+@keyframes sceneFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("../../../../assets/styles/Images/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: fadeIn 0.7s ease;
+}
+
+.containerOpening {
+  overflow: visible;
+}
+
+.scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.sceneOpening {
+  position: relative;
+  z-index: 50;
+  animation: sceneFadeOut 0.5s 3s ease forwards;
+}
+
+.stage {
+  perspective: 1000px;
+  perspective-origin: 50% 28%;
+  transform-style: preserve-3d;
+}
+
+.hint {
+  margin-top: 20px;
+  color: #680000;
+  text-align: center;
+  font-size: 14px;
+  animation: hintPulse 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .scene,
+  .sceneOpening,
+  .hint {
+    animation: none !important;
+  }
+}

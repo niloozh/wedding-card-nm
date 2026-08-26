@@ -4,6 +4,7 @@ import Papa from "papaparse";
 
 import Seo from "@/components/wrappers/Seo";
 import PageContainer from "@/components/wrappers/PageContainer";
+import { getAbsoluteUrl } from "@/constants/siteMeta";
 import Home from "../components/publicWebPages/Home";
 
 export async function getStaticPaths() {
@@ -43,23 +44,16 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const index = ({ guest }) => {
+const GuestInvitationPage = ({ guest }) => {
+  const guestId = guest.guest_id?.trim();
+
   return (
-    <>
-      <Seo
-        title="Wedding Invitation"
-        keywords="wedding"
-        description="We would be delighted to have you with us on our special day."
-        imagePreview="/images/Logo.png"
-        url="https://wedding-card-sr.vercel.app"
-        imgAlt="Logo of Site"
-      >
-        <PageContainer pageIdentifier="home">
-          <Home guest={guest} />
-        </PageContainer>
-      </Seo>
-    </>
+    <Seo url={getAbsoluteUrl(`/${guestId}`)}>
+      <PageContainer pageIdentifier="home">
+        <Home guest={guest} />
+      </PageContainer>
+    </Seo>
   );
 };
 
-export default index;
+export default GuestInvitationPage;

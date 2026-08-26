@@ -1,0 +1,104 @@
+@import "@/styles/branding/base/_mixins.scss";
+
+$wine: #680000;
+$ink: #3b2a2a;
+$gold: #c4a574;
+$cream: rgba(255, 250, 245, 0.58);
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@import "./pageBackground";
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  overflow-y: auto;
+  @include invitationPageBackground;
+  padding-top: 24px;
+  padding-bottom: 88px;
+  animation: fadeIn 0.8s ease;
+}
+
+.invitationPanel {
+  width: min(92vw, 420px);
+  margin: 0 auto;
+  padding: 24px 20px 28px;
+  border-radius: 18px;
+  background: $cream;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 12px 40px rgba(80, 30, 30, 0.1);
+  animation: fadeInUp 0.9s 0.15s ease both;
+}
+
+.blessing {
+  animation: fadeInUp 0.7s 0.2s ease both;
+}
+
+.namesRow {
+  animation: fadeInUp 0.7s 0.28s ease both;
+}
+
+.name {
+  color: $ink;
+  line-height: 1.15;
+}
+
+.ampersand {
+  color: $wine;
+  font-size: 28px;
+  padding: 0 10px;
+  align-self: center;
+  animation: fadeIn 1s 0.36s ease both;
+}
+
+.poem {
+  animation: fadeInUp 0.7s 0.36s ease both;
+}
+
+.details {
+  animation: fadeInUp 0.7s 0.44s ease both;
+}
+
+.divider {
+  width: 72px;
+  height: 1px;
+  margin: 12px auto;
+  background: linear-gradient(90deg, transparent, $gold, transparent);
+}
+
+.inviteNote {
+  animation: fadeInUp 0.7s 0.52s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .invitationPanel,
+  .blessing,
+  .namesRow,
+  .ampersand,
+  .poem,
+  .details,
+  .inviteNote {
+    animation: none !important;
+  }
+}

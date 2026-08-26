@@ -1,7 +1,7 @@
 {
-  "name": "Assessmnt Guardian",
-  "short_name": "Guardian",
-  "description": "Test app for assessment",
+  "name": "دعوتنامه ازدواج نازنین و محمد",
+  "short_name": "نازنین و محمد",
+  "description": "دعوتنامه ازدواج نازنین عادلخانی و محمد حسینی",
   "icons": [
     {
       "src": "/images/favicon/android-chrome-192x192.png",
@@ -16,6 +16,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "theme_color": "#680000",
+  "background_color": "#fffaf5"
 }

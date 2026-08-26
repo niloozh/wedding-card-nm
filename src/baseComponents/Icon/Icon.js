@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
-import { faPauseCircle } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 const Icon = ({
   type = "close",
@@ -22,15 +20,20 @@ const Icon = ({
       )}
       {type === "play" ? (
         <FontAwesomeIcon
-          icon={faPlayCircle}
-          style={{ color, width, height, transform: `scale(${scale})` }}
+          icon={faPlay}
+          style={{
+            color,
+            width,
+            height,
+            transform: `scale(${scale}) translateX(1px)`,
+          }}
         />
       ) : (
         ""
       )}
       {type === "pause" ? (
         <FontAwesomeIcon
-          icon={faPauseCircle}
+          icon={faPause}
           style={{ color, width, height, transform: `scale(${scale})` }}
         />
       ) : (

@@ -1,0 +1,162 @@
+$wine: #680000;
+$ink: #3b2a2a;
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes playGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(104, 0, 0, 0.22);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(104, 0, 0, 0);
+  }
+}
+
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: max(10px, env(safe-area-inset-bottom));
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0 12px;
+  pointer-events: none;
+  animation: slideUp 0.45s 0.2s ease both;
+}
+
+.inner {
+  pointer-events: auto;
+  width: min(92vw, 400px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 6px;
+  border-radius: 999px;
+  background: rgba(255, 250, 246, 0.92);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 6px 20px rgba(80, 30, 30, 0.14);
+  direction: ltr;
+}
+
+.playBtn {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: $wine;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    background: #7e1010;
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.playBtnActive {
+  animation: playGlow 1.8s ease-out infinite;
+}
+
+.meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.trackRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.trackTitle {
+  font-size: 12px;
+  color: $ink;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  direction: rtl;
+}
+
+.trackTime {
+  font-family: "Signika Negative", sans-serif;
+  font-size: 10px;
+  color: rgba(59, 42, 42, 0.65);
+  flex-shrink: 0;
+}
+
+.progress {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(104, 0, 0, 0.14);
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $wine;
+    border: 2px solid #fff;
+  }
+
+  &::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $wine;
+    border: 2px solid #fff;
+  }
+}
+
+.mapBtn {
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: $wine;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #7e1010;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controls,
+  .playBtnActive {
+    animation: none !important;
+  }
+}

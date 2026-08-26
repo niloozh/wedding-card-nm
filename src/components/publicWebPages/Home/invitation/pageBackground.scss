@@ -1,0 +1,29 @@
+@import "@/styles/branding/base/_mixins.scss";
+
+@mixin invitationPageBackground {
+  $overlay:
+    linear-gradient(
+      180deg,
+      rgba(255, 250, 245, 0.55) 0%,
+      rgba(255, 245, 238, 0.32) 40%,
+      rgba(248, 235, 225, 0.42) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 252, 248, 0.32) 0%,
+      rgba(255, 250, 245, 0.08) 50%,
+      rgba(255, 248, 242, 0.28) 100%
+    );
+
+  background-image: $overlay, url("../../../../assets/styles/Images/couple-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 12%;
+
+  @include atLarge {
+    background-image:
+      $overlay,
+      url("../../../../assets/styles/Images/couple-bg-desktop.jpg");
+    background-position: 50% 38%;
+  }
+}
