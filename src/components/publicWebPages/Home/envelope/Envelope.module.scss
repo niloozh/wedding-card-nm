@@ -209,33 +209,6 @@ $paper-dark: #d5c8b8;
     0 -1px 0 rgba(255, 255, 255, 0.35);
 }
 
-.pocketGuest {
-  position: absolute;
-  left: 14%;
-  right: 14%;
-  bottom: 10%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  pointer-events: none;
-}
-
-.guestLabel {
-  color: #3b2a2a;
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.guestName {
-  margin-top: 4px;
-  color: $wine;
-  font-size: 16px;
-  line-height: 1.45;
-  font-weight: 500;
-}
-
 .envelopeOpening .pocketLayer {
   animation: partFade 0.5s 2.9s ease forwards;
 }

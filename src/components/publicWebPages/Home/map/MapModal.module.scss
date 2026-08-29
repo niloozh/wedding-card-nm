@@ -34,6 +34,7 @@ $wine: #680000;
 
 .modal {
   width: min(92vw, 560px);
+  align-items: stretch;
   padding: 18px 18px 20px;
   border-radius: 16px;
   backdrop-filter: blur(16px) saturate(180%);
@@ -44,15 +45,39 @@ $wine: #680000;
   animation: modalIn 0.32s ease;
 }
 
+@keyframes mapSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  min-height: 36px;
   margin-bottom: 12px;
+  direction: ltr;
+}
+
+.headerSpacer {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.headerTitle {
+  flex: 1;
+  font-family: "Signika Negative", Tahoma, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: $wine;
+  text-align: center;
   direction: rtl;
 }
 
 .closeBtn {
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
   border: 0;
@@ -70,15 +95,112 @@ $wine: #680000;
   }
 }
 
-.mapFrame {
-  border: 0;
+.mapWrap {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
   border-radius: 10px;
   overflow: hidden;
+  background: rgba(255, 250, 245, 0.88);
+}
+
+.mapLoading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 250, 245, 0.92);
+}
+
+.mapSpinner {
+  animation: mapSpin 1s linear infinite;
+}
+
+.mapLoadingText {
+  font-family: "Signika Negative", Tahoma, sans-serif;
+  font-size: 14px;
+  color: rgba(59, 42, 42, 0.72);
+}
+
+.mapFrame {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.mapFrameLoaded {
+  opacity: 1;
+}
+
+.addressBlock {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(104, 0, 0, 0.05);
+  border: 1px solid rgba(196, 165, 116, 0.35);
+  direction: rtl;
+  text-align: center;
+}
+
+.addressLabel {
+  font-family: "Signika Negative", Tahoma, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: $wine;
+  margin-bottom: 8px;
+}
+
+.addressText {
+  color: #3b2a2a;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.directionsBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #7a1010 0%, $wine 100%);
+  color: #fffaf5;
+  font-family: "Signika Negative", Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(80, 30, 30, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(80, 30, 30, 0.22);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .overlay,
-  .modal {
+  .modal,
+  .mapSpinner {
     animation: none !important;
+  }
+
+  .mapFrame {
+    opacity: 1;
+    transition: none;
   }
 }

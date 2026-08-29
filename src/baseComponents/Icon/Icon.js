@@ -1,5 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
+import {
+  faClose,
+  faPlay,
+  faPause,
+  faLocationDot,
+  faHeart,
+  faCalendar,
+  faClock,
+  faMusic,
+  faVolumeMute,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Icon = ({
   type = "close",
@@ -34,6 +44,54 @@ const Icon = ({
       {type === "pause" ? (
         <FontAwesomeIcon
           icon={faPause}
+          style={{ color, width, height, transform: `scale(${scale})` }}
+        />
+      ) : (
+        ""
+      )}
+      {type === "location" ? (
+        <FontAwesomeIcon
+          icon={faLocationDot}
+          style={{ color, width, height, transform: `scale(${scale})` }}
+        />
+      ) : (
+        ""
+      )}
+      {type === "heart" ? (
+        <FontAwesomeIcon
+          icon={faHeart}
+          style={{ color, width, height, transform: `scale(${scale})` }}
+        />
+      ) : (
+        ""
+      )}
+      {type === "calendar" ? (
+        <FontAwesomeIcon
+          icon={faCalendar}
+          style={{ color, width, height, transform: `scale(${scale})` }}
+        />
+      ) : (
+        ""
+      )}
+      {type === "clock" ? (
+        <FontAwesomeIcon
+          icon={faClock}
+          style={{ color, width, height, transform: `scale(${scale})` }}
+        />
+      ) : (
+        ""
+      )}
+      {type === "music" ? (
+        <FontAwesomeIcon
+          icon={faMusic}
+          style={{ color, width, height, transform: `scale(${scale})` }}
+        />
+      ) : (
+        ""
+      )}
+      {type === "volumeMute" ? (
+        <FontAwesomeIcon
+          icon={faVolumeMute}
           style={{ color, width, height, transform: `scale(${scale})` }}
         />
       ) : (

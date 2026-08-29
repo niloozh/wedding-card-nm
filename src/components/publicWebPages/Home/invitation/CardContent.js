@@ -1,8 +1,17 @@
 import cx from "classnames";
 import Div from "@/baseComponents/Div";
+
+import {
+  getRsvpPhone,
+  getRsvpPhoneTel,
+  RSVP_DEADLINE_NOTE,
+} from "../constants";
 import styles from "./InvitationView.module.scss";
 
-const CardContent = () => {
+const CardContent = ({ guestSide = "m" }) => {
+  const rsvpPhone = getRsvpPhone(guestSide);
+  const rsvpPhoneTel = getRsvpPhoneTel(guestSide);
+
   return (
     <Div
       type="flex"
@@ -59,7 +68,7 @@ const CardContent = () => {
         className={cx("text-theme-three f-s-px-22", styles.details)}
       >
         <Div>موعد دیدار: ۱۴۰۵/۰۶/۲۴</Div>
-        <Div>ساعت ۱۹:۰۰ تا پاسی از شب</Div>
+        <Div>ساعت ۱۸:۰۰ تا پاسی از شب</Div>
         <Div>باغ پارادایس</Div>
       </Div>
 
@@ -75,7 +84,15 @@ const CardContent = () => {
         <br />
         چراغ این شب را روشن‌تر سازید
         <br />
-        چنانچه افتخار پذیرایی از شما را نداریم به ما اطلاع دهید
+        {RSVP_DEADLINE_NOTE}
+        <br />
+        <a
+          className={styles.rsvpPhone}
+          href={`tel:${rsvpPhoneTel}`}
+          aria-label={`تماس با ${rsvpPhone}`}
+        >
+          {rsvpPhone}
+        </a>
       </Div>
     </Div>
   );

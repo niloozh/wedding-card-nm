@@ -1,10 +1,11 @@
 $wine: #680000;
+$gold: #c4a574;
 $ink: #3b2a2a;
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -15,59 +16,208 @@ $ink: #3b2a2a;
 @keyframes playGlow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(104, 0, 0, 0.22);
+    box-shadow: 0 0 0 0 rgba(104, 0, 0, 0.28);
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(104, 0, 0, 0);
+    box-shadow: 0 0 0 10px rgba(104, 0, 0, 0);
+  }
+}
+
+@keyframes ringSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes eqPulse {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes progressShine {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
   }
 }
 
 .controls {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: max(10px, env(safe-area-inset-bottom));
-  z-index: 100;
+  width: var(--panel-width, min(92vw, 420px));
+  max-width: 100%;
   display: flex;
   justify-content: center;
-  padding: 0 12px;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 28px 0 0;
   pointer-events: none;
-  animation: slideUp 0.45s 0.2s ease both;
+  animation: slideUp 0.55s 0.35s ease both;
+}
+
+.stack {
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(255, 250, 246, 0.94);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow:
+    0 10px 28px rgba(80, 30, 30, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  transition:
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.stackPlaying {
+  border-color: rgba(196, 165, 116, 0.65);
+  box-shadow:
+    0 12px 32px rgba(80, 30, 30, 0.16),
+    0 0 0 1px rgba(196, 165, 116, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(196, 165, 116, 0.12) 50%,
+      transparent 60%
+    );
+    background-size: 220% 100%;
+    animation: shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+.mapBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 0;
+  border-bottom: 1px solid rgba(196, 165, 116, 0.35);
+  border-radius: 0;
+  direction: rtl;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(247, 239, 228, 0.28) 100%
+  );
+  color: $wine;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  &:active {
+    background: rgba(247, 239, 228, 0.45);
+  }
+}
+
+.mapBtnIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(104, 0, 0, 0.08);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+
+  .mapBtn:hover & {
+    transform: scale(1.06);
+  }
+}
+
+.mapBtnText {
+  font-family: "Signika Negative", Tahoma, sans-serif;
+  font-weight: 600;
+  direction: rtl;
+  letter-spacing: 0.01em;
 }
 
 .inner {
-  pointer-events: auto;
-  width: min(92vw, 400px);
+  position: relative;
+  z-index: 1;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 8px 6px 6px;
-  border-radius: 999px;
-  background: rgba(255, 250, 246, 0.92);
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 6px 20px rgba(80, 30, 30, 0.14);
+  gap: 10px;
+  padding: 8px 10px 8px 8px;
   direction: ltr;
 }
 
-.playBtn {
+.playBtnWrap {
+  position: relative;
   flex-shrink: 0;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
+}
+
+.playBtnRing {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: $gold;
+  border-right-color: rgba(196, 165, 116, 0.35);
+  animation: ringSpin 2.4s linear infinite;
+  pointer-events: none;
+}
+
+.playBtn {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
   border: 0;
   border-radius: 50%;
-  background: $wine;
+  background: linear-gradient(145deg, #7a1010 0%, $wine 100%);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 
   &:hover {
-    transform: scale(1.05);
-    background: #7e1010;
+    transform: scale(1.06);
   }
 
   &:active {
@@ -85,47 +235,140 @@ $ink: #3b2a2a;
 }
 
 .trackRow {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  margin-bottom: 2px;
+  justify-content: center;
+  margin-bottom: 6px;
+  min-height: 16px;
+  padding: 0 52px 0 24px;
+}
+
+.equalizer {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.eqBar {
+  width: 3px;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(104, 0, 0, 0.22);
+  transform-origin: bottom center;
+  transform: scaleY(0.35);
+}
+
+.equalizerActive .eqBar {
+  background: $wine;
+
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      animation: eqPulse 0.75s ease-in-out infinite;
+      animation-delay: #{($i - 1) * 0.12}s;
+    }
+  }
 }
 
 .trackTitle {
   font-size: 12px;
+  font-weight: 500;
   color: $ink;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   direction: rtl;
+  text-align: center;
 }
 
 .trackTime {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   font-family: "Signika Negative", sans-serif;
-  font-size: 10px;
-  color: rgba(59, 42, 42, 0.65);
+  font-size: 9px;
+  color: rgba(59, 42, 42, 0.62);
   flex-shrink: 0;
+}
+
+.progressWrap {
+  position: relative;
+  height: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.progressFill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, $wine 0%, #9a2020 100%);
+  pointer-events: none;
+  transition: width 0.12s linear;
+}
+
+.progressFillActive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  animation: progressShine 2.2s ease-in-out infinite;
 }
 
 .progress {
   -webkit-appearance: none;
   appearance: none;
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(104, 0, 0, 0.14);
+  height: 14px;
+  background: transparent;
   outline: none;
   cursor: pointer;
+
+  &::-webkit-slider-runnable-track {
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(104, 0, 0, 0.14);
+  }
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 10px;
     height: 10px;
+    margin-top: -3.5px;
     border-radius: 50%;
     background: $wine;
     border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(80, 30, 30, 0.25);
+    transition: transform 0.15s ease;
+  }
+
+  &:active::-webkit-slider-thumb {
+    transform: scale(1.15);
+  }
+
+  &::-moz-range-track {
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(104, 0, 0, 0.14);
   }
 
   &::-moz-range-thumb {
@@ -134,29 +377,17 @@ $ink: #3b2a2a;
     border-radius: 50%;
     background: $wine;
     border: 2px solid #fff;
-  }
-}
-
-.mapBtn {
-  flex-shrink: 0;
-  height: 34px;
-  padding: 0 14px;
-  border: 0;
-  border-radius: 999px;
-  background: $wine;
-  color: #fff;
-  font-size: 13px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-
-  &:hover {
-    background: #7e1010;
+    box-shadow: 0 1px 4px rgba(80, 30, 30, 0.25);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .controls,
-  .playBtnActive {
+  .playBtnActive,
+  .playBtnRing,
+  .stackPlaying::after,
+  .equalizerActive .eqBar,
+  .progressFillActive::after {
     animation: none !important;
   }
 }

@@ -1,25 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 
-import EnvelopeScene from "./envelope/EnvelopeScene";
-import InvitationView from "./invitation/InvitationView";
-import MapModal from "./map/MapModal";
-import { OPEN_ANIMATION_MS } from "./constants";
-import useWeddingAudio from "./hooks/useWeddingAudio";
+import EnvelopeScene from "../Home/envelope/EnvelopeScene";
+import AltInvitationView from "./invitation/AltInvitationView";
+import { OPEN_ANIMATION_MS } from "../Home/constants";
+import useWeddingAudio from "../Home/hooks/useWeddingAudio";
 
-const Home = ({ guestSide = "m" }) => {
+const HomeAlt = ({ guestSide = "m" }) => {
   const openTimerRef = useRef(null);
   const [phase, setPhase] = useState("closed");
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const {
-    isPlaying,
-    currentTime,
-    duration,
-    progress,
-    play,
-    toggle,
-    seek,
-  } = useWeddingAudio();
+  const { isPlaying, play, toggle } = useWeddingAudio();
 
   const isOpening = phase === "opening";
   const isCardOpened = phase === "open";
@@ -46,21 +36,14 @@ const Home = ({ guestSide = "m" }) => {
       )}
 
       {isCardOpened && (
-        <InvitationView
+        <AltInvitationView
           guestSide={guestSide}
           isPlaying={isPlaying}
-          currentTime={currentTime}
-          duration={duration}
-          progress={progress}
           onToggleAudio={toggle}
-          onSeek={seek}
-          onOpenMap={() => setIsModalOpen(true)}
         />
       )}
-
-      {isModalOpen && <MapModal onClose={() => setIsModalOpen(false)} />}
     </>
   );
 };
 
-export default Home;
+export default HomeAlt;

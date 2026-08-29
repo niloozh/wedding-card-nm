@@ -32,13 +32,14 @@ $cream: rgba(255, 250, 245, 0.58);
   min-height: 100vh;
   overflow-y: auto;
   @include invitationPageBackground;
+  --panel-width: min(92vw, 420px);
   padding-top: 24px;
-  padding-bottom: 88px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
   animation: fadeIn 0.8s ease;
 }
 
 .invitationPanel {
-  width: min(92vw, 420px);
+  width: var(--panel-width);
   margin: 0 auto;
   padding: 24px 20px 28px;
   border-radius: 18px;
@@ -88,6 +89,22 @@ $cream: rgba(255, 250, 245, 0.58);
 
 .inviteNote {
   animation: fadeInUp 0.7s 0.52s ease both;
+  padding-bottom: 4px;
+}
+
+.rsvpPhone {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  color: $wine;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  direction: ltr;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

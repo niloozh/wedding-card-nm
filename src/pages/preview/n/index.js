@@ -1,16 +1,16 @@
 import Seo from "@/components/wrappers/Seo";
 import PageContainer from "@/components/wrappers/PageContainer";
 import { getAbsoluteUrl } from "@/constants/siteMeta";
-import Home from "../components/publicWebPages/Home";
+import HomeAlt from "../../../components/publicWebPages/HomeAlt";
 
-const index = () => {
+const PreviewBridePage = () => {
   return (
-    <Seo url={getAbsoluteUrl("/m")}>
+    <Seo url={getAbsoluteUrl("/preview/n")}>
       <PageContainer pageIdentifier="home">
-        <Home guestSide="m" />
+        <HomeAlt guestSide="n" />
       </PageContainer>
     </Seo>
   );
 };
 
-export default index;
+export default PreviewBridePage;

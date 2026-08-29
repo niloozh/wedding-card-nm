@@ -4,7 +4,7 @@ import Div from "@/baseComponents/Div";
 import Envelope from "./Envelope";
 import styles from "./EnvelopeScene.module.scss";
 
-const EnvelopeScene = ({ guest, isOpening, onOpen }) => {
+const EnvelopeScene = ({ isOpening, onOpen }) => {
   return (
     <Div
       type="flex"
@@ -16,11 +16,9 @@ const EnvelopeScene = ({ guest, isOpening, onOpen }) => {
         isOpening && styles.containerOpening
       )}
     >
-      <Div
-        className={cx(styles.scene, isOpening && styles.sceneOpening)}
-      >
+      <Div className={cx(styles.scene, isOpening && styles.sceneOpening)}>
         <div className={styles.stage}>
-          <Envelope guest={guest} isOpening={isOpening} onOpen={onOpen} />
+          <Envelope isOpening={isOpening} onOpen={onOpen} />
         </div>
 
         {!isOpening && (

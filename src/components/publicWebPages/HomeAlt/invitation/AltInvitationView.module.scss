@@ -1,0 +1,384 @@
+@import "@/styles/branding/base/_mixins.scss";
+
+$wine: #680000;
+$gold: #c4a574;
+$ink: #2f2222;
+$cream: rgba(255, 250, 245, 0.92);
+$creamPanel: rgba(255, 250, 245, 0.94);
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.bgLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 250, 245, 0.78) 0%,
+      rgba(255, 245, 238, 0.62) 45%,
+      rgba(248, 235, 225, 0.72) 100%
+    ),
+    url("../../../../assets/styles/Images/couple-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 12%;
+  pointer-events: none;
+
+  @include atLarge {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(255, 250, 245, 0.78) 0%,
+        rgba(255, 245, 238, 0.62) 45%,
+        rgba(248, 235, 225, 0.72) 100%
+      ),
+      url("../../../../assets/styles/Images/couple-bg-desktop.jpg");
+    background-position: 50% 38%;
+  }
+}
+
+.musicToggle {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top));
+  left: max(16px, env(safe-area-inset-left));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(196, 165, 116, 0.55);
+  border-radius: 50%;
+  background: rgba(255, 250, 245, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(80, 30, 30, 0.1);
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.92);
+    transform: scale(1.04);
+  }
+}
+
+.sectionIcon {
+  display: block;
+  margin: 0 auto;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  width: min(92vw, 640px);
+  margin: 0 auto;
+  padding: 88px 20px max(40px, env(safe-area-inset-bottom));
+  animation: fadeUp 0.7s ease both;
+}
+
+.heroPanel {
+  padding: 28px 22px 32px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: $creamPanel;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 12px 40px rgba(80, 30, 30, 0.14);
+  text-align: center;
+}
+
+.heroEyebrow {
+  font-size: 22px;
+  color: $ink;
+  line-height: 1.5;
+}
+
+.namesRow {
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 8px;
+}
+
+.nameBlock {
+  min-width: 0;
+
+  &:first-child {
+    text-align: right;
+    padding-left: 8px;
+  }
+
+  &:last-child {
+    text-align: left;
+    padding-right: 8px;
+  }
+}
+
+.firstName {
+  font-size: clamp(36px, 9vw, 44px);
+  color: $ink;
+  line-height: 1.15;
+}
+
+.lastName {
+  margin-top: 10px;
+  font-size: clamp(18px, 4.5vw, 22px);
+  color: $ink;
+  line-height: 1.2;
+}
+
+.ampersand {
+  flex-shrink: 0;
+  padding: 0 10px;
+  font-size: 28px;
+  color: $wine;
+  line-height: 1;
+}
+
+.goldRule {
+  display: block;
+  width: min(160px, 40vw);
+  height: 1px;
+  margin: 22px auto 20px;
+  background: linear-gradient(90deg, transparent, $gold, transparent);
+}
+
+.heroInvite {
+  font-size: clamp(19px, 4.8vw, 22px);
+  line-height: 1.85;
+  color: $ink;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.card {
+  margin-top: 16px;
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: $creamPanel;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(80, 30, 30, 0.08);
+}
+
+.poem {
+  margin: 16px 0 0;
+  font-size: clamp(19px, 4.8vw, 22px);
+  line-height: 1.85;
+  color: $ink;
+}
+
+@keyframes mapSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+
+  @include atSmall {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.detailCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 168px;
+  padding: 22px 16px 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 252, 248, 0.98) 0%,
+    rgba(247, 239, 228, 0.92) 100%
+  );
+}
+
+.iconBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(196, 165, 116, 0.16);
+  border: 1px solid rgba(196, 165, 116, 0.32);
+}
+
+.cardLabel {
+  margin-top: 14px;
+  font-size: 18px;
+  color: rgba(47, 34, 34, 0.78);
+  line-height: 1.4;
+}
+
+.cardValue {
+  margin-top: 10px;
+  font-size: clamp(26px, 6.5vw, 32px);
+  letter-spacing: 0.02em;
+  color: $wine;
+  line-height: 1.25;
+}
+
+.cardValueSub {
+  margin-top: 8px;
+  font-size: clamp(26px, 6.5vw, 32px);
+  letter-spacing: 0.02em;
+  color: $wine;
+  line-height: 1.25;
+}
+
+.venueCard {
+  margin-top: 16px;
+  padding-top: 24px;
+  padding-bottom: 26px;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  font-style: normal;
+  font-size: 17px;
+  line-height: 1.8;
+  color: $ink;
+  text-align: center;
+}
+
+.venueLine,
+.addressLine {
+  display: block;
+}
+
+.mapSection {
+  position: relative;
+  margin-top: 16px;
+  min-height: 288px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(196, 165, 116, 0.35);
+  box-shadow: 0 8px 28px rgba(80, 30, 30, 0.08);
+  background: rgba(255, 250, 245, 0.88);
+}
+
+.mapLoading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(255, 250, 245, 0.92);
+}
+
+.mapSpinner {
+  animation: mapSpin 1s linear infinite;
+}
+
+.mapLoadingText {
+  font-size: 16px;
+  color: rgba(47, 34, 34, 0.72);
+}
+
+.mapFrame {
+  display: block;
+  width: 100%;
+  height: 288px;
+  border: 0;
+  opacity: 0;
+  filter: grayscale(35%);
+  transition: opacity 0.35s ease;
+}
+
+.mapFrameLoaded {
+  opacity: 1;
+}
+
+.rsvpCard {
+  margin-top: 16px;
+}
+
+.rsvpNote {
+  font-size: 19px;
+  line-height: 1.85;
+  color: $ink;
+}
+
+.rsvpPhone {
+  display: inline-block;
+  margin-top: 14px;
+  color: $wine;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  direction: ltr;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.footer {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.footerNames {
+  margin-top: 20px;
+  font-size: clamp(26px, 6vw, 32px);
+  color: $wine;
+}
+
+.footerNote {
+  margin-top: 10px;
+  font-family: "Signika Negative", Tahoma, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: rgba(59, 42, 42, 0.58);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .mapSpinner {
+    animation: none !important;
+  }
+
+  .mapFrame {
+    opacity: 1;
+    transition: none;
+  }
+}

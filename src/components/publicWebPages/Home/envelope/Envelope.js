@@ -2,7 +2,7 @@ import cx from "classnames";
 
 import styles from "./Envelope.module.scss";
 
-const Envelope = ({ guest, isOpening, onOpen }) => {
+const Envelope = ({ isOpening, onOpen }) => {
   return (
     <div
       role="button"
@@ -25,7 +25,7 @@ const Envelope = ({ guest, isOpening, onOpen }) => {
       <div className={styles.card}>
         <div className={styles.cardInner}>
           <span className={styles.cardLabel}>دعوتنامه</span>
-          <span className={styles.cardNames}>محمد و نازنین</span>
+          <span className={styles.cardNames}>نازنین و محمد</span>
         </div>
       </div>
 
@@ -33,10 +33,6 @@ const Envelope = ({ guest, isOpening, onOpen }) => {
         <div className={styles.pocketSideLeft} />
         <div className={styles.pocketSideRight} />
         <div className={styles.pocket} />
-        <div className={styles.pocketGuest}>
-          <span className={styles.guestLabel}>حضور محترم</span>
-          <span className={styles.guestName}>{guest?.guest_name}</span>
-        </div>
       </div>
 
       <div className={cx(styles.flap, isOpening && styles.flapOpening)}>

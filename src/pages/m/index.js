@@ -1,9 +1,9 @@
 import Seo from "@/components/wrappers/Seo";
 import PageContainer from "@/components/wrappers/PageContainer";
 import { getAbsoluteUrl } from "@/constants/siteMeta";
-import Home from "../components/publicWebPages/Home";
+import Home from "../../components/publicWebPages/Home";
 
-const index = () => {
+const GroomInvitationPage = () => {
   return (
     <Seo url={getAbsoluteUrl("/m")}>
       <PageContainer pageIdentifier="home">
@@ -13,4 +13,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default GroomInvitationPage;
